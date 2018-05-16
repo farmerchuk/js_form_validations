@@ -10,7 +10,7 @@ lastNameInput.addEventListener('keypress', preventNonAlpha);
 creditCard.addEventListener('keypress', preventNonNumeric);
 creditCard.addEventListener('keyup', moveFocusForward);
 form.addEventListener('input', highlightErrors);
-form.addEventListener('submit', highlightSubmitError);
+form.addEventListener('submit', sendToServer);
 
 function highlightErrors(event) {
   var input = event.target;
@@ -36,13 +36,20 @@ function highlightAllErrors() {
   });
 }
 
-function highlightSubmitError(event) {
+function sendToServer(event) {
   event.preventDefault();
+  var serialized;
 
   if (!noErrors()) {
-    highlightAllErrors();
-    formSubmitError.style.display = 'block';
+    failedSubmit();
+  } else {
+    console.log('Successfully submitted!');
   }
+}
+
+function failedSubmit() {
+  highlightAllErrors();
+  formSubmitError.style.display = 'block';
 }
 
 function noErrors() {
@@ -68,5 +75,5 @@ function moveFocusForward(event) {
   var segment = event.target;
   var nextSegment = segment.nextElementSibling.nextElementSibling;
 
-  if (segment.value.length === 4) nextSegment.focus();
+  if (nextSegment && segment.value.length === 4) nextSegment.focus();
 }
