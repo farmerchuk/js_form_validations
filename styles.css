@@ -32,6 +32,12 @@ button {
   outline: none;
 }
 
+input[id^="credit-card"] {
+  display: inline-block;
+  width: 20%;
+  margin-right: 10px;
+}
+
 button {
   margin-top: 20px;
   padding: 15px;

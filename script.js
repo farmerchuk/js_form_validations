@@ -1,17 +1,24 @@
 var form = document.querySelector('form');
 var formSubmitError = document.querySelector('.submit-error-message');
 var inputs = document.getElementsByTagName('input');
+var firstNameInput = document.getElementById('first-name');
+var lastNameInput = document.getElementById('last-name');
+var creditCard = document.getElementById('credit-card');
+
+firstNameInput.addEventListener('keypress', preventNonAlpha);
+lastNameInput.addEventListener('keypress', preventNonAlpha);
+creditCard.addEventListener('keypress', preventNonNumeric);
 
 form.addEventListener('input', function(e) {
   var input = e.target;
 
   if (input.validity.valid) {
     input.classList.remove('error');
-    input.nextElementSibling.style.display = 'none';
+    input.parentNode.lastElementChild.style.display = 'none';
     if (noErrors()) formSubmitError.style.display = 'none';
   } else {
     input.classList.add('error');
-    input.nextElementSibling.style.display = 'block';
+    input.parentNode.lastElementChild.style.display = 'block';
   }
 });
 
@@ -23,6 +30,19 @@ form.addEventListener('submit', function(e) {
     formSubmitError.style.display = 'block';
   }
 });
+
+function preventNonAlpha(event) {
+  var key = String.fromCharCode(event.which);
+  if (key.match(/[^a-zA-Z\s]+/)) event.preventDefault();
+}
+
+function preventNonNumeric(event) {
+  var key = String.fromCharCode(event.which);
+
+  if (event.target.name === 'credit-card' && key.match(/[^0-9]+/)) {
+    event.preventDefault();
+  }
+}
 
 function noErrors() {
   var inputsArray = Array.prototype.slice.call(inputs);
@@ -36,7 +56,7 @@ function highlightAllErrors() {
   inputsArray.forEach(function(input) {
     if (!input.validity.valid) {
       input.classList.add('error');
-      input.nextElementSibling.style.display = 'block';
+      input.parentNode.lastElementChild.style.display = 'block';
     }
   });
 }
