@@ -1,0 +1,69 @@
+@import url("reset.css");
+
+html {
+  font: 200 20px Helvetica, sans-serif;
+  color: #565656;
+}
+
+form {
+  width: 500px;
+  margin: 100px auto 0 auto;
+  border: 1px solid #dadada;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+form ul {
+  border-bottom: 1px dotted #dadada;
+}
+
+form li {
+  padding-bottom: 20px;
+}
+
+input,
+button {
+  -webkit-appearance: none;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  color: #565656;
+  outline: none;
+}
+
+button {
+  margin-top: 20px;
+  padding: 15px;
+  cursor: pointer;
+  background: cadetblue;
+  color: #fff;
+  border: none;
+}
+
+button:hover {
+  background: #51a4af;
+}
+
+span.label {
+  display: block;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  font-weight: 200;
+}
+
+span.error-message {
+  display: none;
+  color: red;
+  padding-top: 5px;
+}
+
+span.submit-error-message {
+  display: none;
+  color: red;
+  padding-bottom: 20px;
+}
+
+.error {
+  border-color: red;
+}

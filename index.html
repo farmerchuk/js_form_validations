@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+  </head>
+
+  <body>
+
+    <form novalidate>
+
+      <span class="submit-error-message">Please fix all errors before submitting</span>
+
+      <fieldset>
+
+        <ul>
+
+          <li>
+            <label for="first-name">
+              <span class="label">First Name</span>
+              <input type="text" id="first-name" name="first-name" value="" required>
+              <span class="error-message">First name required</span>
+            </label>
+          </li>
+
+          <li>
+            <label for="last-name">
+              <span class="label">Last Name</span>
+              <input type="text" id="last-name" name="last-name" value="" required>
+              <span class="error-message">Last name required</span>
+            </label>
+          </li>
+
+          <li>
+            <label for="email">
+              <span class="label">E-mail</span>
+              <input type="email" id="email" name="email" value="" required pattern=".+@.+\..+">
+              <span class="error-message">Valid e-mail required</span>
+            </label>
+          </li>
+
+          <li>
+            <label for="password">
+              <span class="label">Password</span>
+              <input type="password" id="password" name="password" value="" required>
+              <span class="error-message">Password required</span>
+            </label>
+          </li>
+
+          <li>
+            <label for="phone">
+              <span class="label">Phone</span>
+              <input type="tel" id="phone" name="phone" value="" required pattern="\(\d{3}\) \d{3}-\d{4}">
+              <span class="error-message">Required format (###) ###-####</span>
+            </label>
+          </li>
+
+        </ul>
+
+        <button type="submit" name="button">Sign-up</button>
+
+      </fieldset>
+
+    </form>
+
+    <script src="script.js"></script>
+
+  </body>
+
+</html>
