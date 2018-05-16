@@ -7,7 +7,7 @@ html {
 
 form {
   width: 500px;
-  margin: 100px auto 0 auto;
+  margin: 50px auto;
   border: 1px solid #dadada;
   border-radius: 3px;
   padding: 20px;
@@ -60,13 +60,13 @@ span.label {
 
 span.error-message {
   display: none;
-  color: red;
+  color: #ec4444;
   padding-top: 5px;
 }
 
 span.submit-error-message {
   display: none;
-  color: red;
+  color: #ec4444;
   padding-bottom: 20px;
 }
 

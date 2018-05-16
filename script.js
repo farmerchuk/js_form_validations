@@ -8,9 +8,12 @@ var creditCard = document.getElementById('credit-card');
 firstNameInput.addEventListener('keypress', preventNonAlpha);
 lastNameInput.addEventListener('keypress', preventNonAlpha);
 creditCard.addEventListener('keypress', preventNonNumeric);
+creditCard.addEventListener('keyup', moveFocusForward);
+form.addEventListener('input', highlightErrors);
+form.addEventListener('submit', highlightSubmitError);
 
-form.addEventListener('input', function(e) {
-  var input = e.target;
+function highlightErrors(event) {
+  var input = event.target;
 
   if (input.validity.valid) {
     input.classList.remove('error');
@@ -20,16 +23,33 @@ form.addEventListener('input', function(e) {
     input.classList.add('error');
     input.parentNode.lastElementChild.style.display = 'block';
   }
-});
+}
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
+function highlightAllErrors() {
+  var inputsArray = Array.prototype.slice.call(inputs);
+
+  inputsArray.forEach(function(input) {
+    if (!input.validity.valid) {
+      input.classList.add('error');
+      input.parentNode.lastElementChild.style.display = 'block';
+    }
+  });
+}
+
+function highlightSubmitError(event) {
+  event.preventDefault();
 
   if (!noErrors()) {
     highlightAllErrors();
     formSubmitError.style.display = 'block';
   }
-});
+}
+
+function noErrors() {
+  var inputsArray = Array.prototype.slice.call(inputs);
+
+  return inputsArray.every(input => input.validity.valid);
+}
 
 function preventNonAlpha(event) {
   var key = String.fromCharCode(event.which);
@@ -44,19 +64,9 @@ function preventNonNumeric(event) {
   }
 }
 
-function noErrors() {
-  var inputsArray = Array.prototype.slice.call(inputs);
+function moveFocusForward(event) {
+  var segment = event.target;
+  var nextSegment = segment.nextElementSibling.nextElementSibling;
 
-  return inputsArray.every(input => input.validity.valid);
-}
-
-function highlightAllErrors() {
-  var inputsArray = Array.prototype.slice.call(inputs);
-
-  inputsArray.forEach(function(input) {
-    if (!input.validity.valid) {
-      input.classList.add('error');
-      input.parentNode.lastElementChild.style.display = 'block';
-    }
-  });
+  if (segment.value.length === 4) nextSegment.focus();
 }
